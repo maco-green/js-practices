@@ -22,7 +22,7 @@ const lastDayOfMonth = new Date(year, month, 0).getDate();
 let day = 1;
 const firstSaturday = 7 - firstDayOfMonth.getDay();
 
-console.log("     " + month + "月 " + year);
+console.log("      " + month + "月 " + year);
 console.log("日 " + "月 " + "火 " + "水 " + "木 " + "金 " + "土 ");
 
 for (let spaceCount = 0; spaceCount < firstDayOfMonth.getDay(); spaceCount++) {
@@ -37,4 +37,8 @@ for (day; day <= lastDayOfMonth; day++) {
   if ((day - firstSaturday) % 7 === 0) {
     console.log();
   }
+}
+
+if (new Date(year, month, 0).getDay() !== 6) {
+  console.log();
 }
