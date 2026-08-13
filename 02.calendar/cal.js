@@ -10,14 +10,31 @@ if (monthIndex !== -1) {
   month = Number(commandLineArguments[monthIndex + 1]);
 }
 
-console.log(month);
-
 const yearIndex = commandLineArguments.indexOf("-y");
 
 if (yearIndex !== -1) {
   year = Number(commandLineArguments[yearIndex + 1]);
 }
 
-console.log(year);
+const firstDayOfMonth = new Date(year, month - 1);
+const lastDayOfMonth = new Date(year, month, 0).getDate();
 
-console.log(new Date(year, month - 1));
+let day = 1;
+const firstSaturday = 7 - firstDayOfMonth.getDay();
+
+console.log("     " + month + "月 " + year);
+console.log("日 " + "月 " + "火 " + "水 " + "木 " + "金 " + "土 ");
+
+for (let spaceCount = 0; spaceCount < firstDayOfMonth.getDay(); spaceCount++) {
+  process.stdout.write("   ");
+}
+
+for (day; day <= lastDayOfMonth; day++) {
+  if (day < 10) {
+    process.stdout.write(" ");
+  }
+  process.stdout.write(String(day) + " ");
+  if ((day - firstSaturday) % 7 === 0) {
+    console.log();
+  }
+}
