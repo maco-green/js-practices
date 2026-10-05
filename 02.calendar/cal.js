@@ -1,19 +1,19 @@
-const commandLineArguments = process.argv.slice(2);
+const args = process.argv.slice(2);
 
 const now = new Date();
 let year = now.getFullYear();
 let month = now.getMonth() + 1;
 
-const monthIndex = commandLineArguments.indexOf("-m");
+const monthIndex = args.indexOf("-m");
 
 if (monthIndex !== -1) {
-  month = Number(commandLineArguments[monthIndex + 1]);
+  month = Number(args[monthIndex + 1]);
 }
 
-const yearIndex = commandLineArguments.indexOf("-y");
+const yearIndex = args.indexOf("-y");
 
 if (yearIndex !== -1) {
-  year = Number(commandLineArguments[yearIndex + 1]);
+  year = Number(args[yearIndex + 1]);
 }
 
 const firstDayOfMonth = new Date(year, month - 1);
@@ -22,10 +22,10 @@ const lastDayOfMonth = new Date(year, month, 0).getDate();
 let day = 1;
 const firstSaturday = 7 - firstDayOfMonth.getDay();
 
-console.log("      " + month + "月 " + year);
-console.log("日 " + "月 " + "火 " + "水 " + "木 " + "金 " + "土 ");
+console.log(`      ${month}月 ${year}`);
+console.log("日 月 火 水 木 金 土 ");
 
-for (let spaceCount = 0; spaceCount < firstDayOfMonth.getDay(); spaceCount++) {
+for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
   process.stdout.write("   ");
 }
 
