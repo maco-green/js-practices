@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const args = process.argv.slice(2);
 
 const now = new Date();
@@ -19,15 +21,15 @@ if (yearIndex !== -1) {
 const firstDayOfMonth = new Date(year, month - 1);
 const lastDayOfMonth = new Date(year, month, 0).getDate();
 
-let day = 1;
-const firstSaturday = 7 - firstDayOfMonth.getDay();
-
 console.log(`      ${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土 ");
 
 for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
   process.stdout.write("   ");
 }
+
+let day = 1;
+const firstSaturday = 7 - firstDayOfMonth.getDay();
 
 for (day; day <= lastDayOfMonth; day++) {
   if (day < 10) {
