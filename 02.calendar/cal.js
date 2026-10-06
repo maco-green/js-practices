@@ -22,21 +22,27 @@ const firstDayOfMonth = new Date(year, month - 1);
 const lastDayOfMonth = new Date(year, month, 0).getDate();
 
 console.log(`      ${month}月 ${year}`);
-console.log("日 月 火 水 木 金 土 ");
+console.log("日 月 火 水 木 金 土");
 
 for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
   process.stdout.write("   ");
 }
 
 let day = 1;
-const firstSaturday = 7 - firstDayOfMonth.getDay();
 
 for (day; day <= lastDayOfMonth; day++) {
   if (day < 10) {
     process.stdout.write(" ");
   }
-  process.stdout.write(String(day) + " ");
-  if ((day - firstSaturday) % 7 === 0) {
+  process.stdout.write(String(day));
+
+  const currentDate = new Date(year, month - 1, day);
+
+  if (currentDate.getDay() !== 6 && day !== lastDayOfMonth) {
+    process.stdout.write(" ");
+  }
+
+  if (currentDate.getDay() === 6) {
     console.log();
   }
 }
